@@ -1,0 +1,16 @@
+/*  login.css - estilos da tela de cadastro e login apenas */
+
+/* degrade roxo - lilás da página */
+body {min-height: 100vh; 
+      background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-fundo-claro) 100%);}
+
+/* caixa branca dos formulários */
+.caixa-login {background-color: #ffffff; border-radius: 16px; max-width: 420px; width: 100%;}
+
+/* logo SignEdu */
+.logo-circulo {width: 72px; height: 72px; background-color: var(--cor-fundo-claro); font-size: 2.2rem;}
+.logo-nome {color: var(--cor-primaria-texto); font-weight: 700;}
+
+/* "Entrar" e "Criar conta" */
+.nav-pills .nav-link {color: var(--cor-primaria-texto); font-weight: 500;}
+.nav-pills .nav-link.active {background-color: var(--cor-primaria); color: #ffffff;}

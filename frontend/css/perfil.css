@@ -1,0 +1,8 @@
+/* perfil.css - estilos só da tela de perfil */
+
+.avatar {width: 80px; height: 80px;}
+
+.barra-xp {height: 20px;}
+.barra-desafio {height: 15px;}
+
+.icone-conquista {font-size: 2rem;}

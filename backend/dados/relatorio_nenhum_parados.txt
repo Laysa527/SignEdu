@@ -1,0 +1,23 @@
+Sinais parados com a classe "Nenhum sinal" - 25/11/2026 17:17
+
+LETRAS: 34292 exemplos certos da base + 168 quadros errados da coleta (x5 com tremor) como "Nenhum sinal"
+Validação com a câmera real (errado: 3 pedaços no tempo; certo: nunca treinado):
+  B feito CERTO : quadros aceitos   82% | valeu (8 seguidos) em 1 de 1 pedaços
+  B feito ERRADO: quadros aceitos    0% | valeu (8 seguidos) em 0 de 3 pedaços
+  M feito CERTO : quadros aceitos   83% | valeu (8 seguidos) em 1 de 1 pedaços
+  M feito ERRADO: quadros aceitos    0% | valeu (8 seguidos) em 0 de 3 pedaços
+  P feito CERTO : quadros aceitos   96% | valeu (8 seguidos) em 1 de 1 pedaços
+  P feito ERRADO: quadros aceitos    0% | valeu (8 seguidos) em 0 de 3 pedaços
+Base de teste das letras (11402 fotos): antes 99.80%, agora 99.88%
+Salvo em modelo_letras.joblib (o anterior ficou em modelo_letras_ANTES_nenhum.joblib)
+
+NUMEROS: 2319 exemplos certos da base + 146 quadros errados da coleta (x5 com tremor) como "Nenhum sinal"
+Validação com a câmera real (errado: 3 pedaços no tempo; certo: nunca treinado):
+  4 feito CERTO : quadros aceitos   62% | valeu (8 seguidos) em 1 de 1 pedaços
+  4 feito ERRADO: quadros aceitos    0% | valeu (8 seguidos) em 0 de 3 pedaços
+  5 feito CERTO : quadros aceitos   64% | valeu (8 seguidos) em 1 de 1 pedaços
+  5 feito ERRADO: quadros aceitos    2% | valeu (8 seguidos) em 0 de 3 pedaços
+  6 feito CERTO : quadros aceitos   58% | valeu (8 seguidos) em 1 de 1 pedaços
+  6 feito ERRADO: quadros aceitos    1% | valeu (8 seguidos) em 0 de 3 pedaços
+Salvo em modelo_numeros.joblib (o anterior ficou em modelo_numeros_ANTES_nenhum.joblib)
+

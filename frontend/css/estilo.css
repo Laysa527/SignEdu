@@ -1,0 +1,83 @@
+/* estilo.css - estilos pra todas as telas do projeto, as alterações aqui se aplicam a tudo */
+
+/*  Variáveis de cor (paleta extraída do mockup do Trello)  */
+:root {--cor-primaria: #7253FE;
+       --cor-primaria-escura: #5a3fd6;
+       --cor-fundo-claro: #EEF2FD;
+       --cor-texto-escuro: #1a1a1a;
+       /* Acessibilidade (WCAG 2.1, 1.4.3): textos roxos e cinzas um pouco mais escuros,
+          para ter contraste de pelo menos 4,5:1 com o fundo claro. O roxo da marca continua
+          nos fundos, botões e barras. */
+       --cor-primaria-texto: #6347F0;
+       --cor-texto-suave: #5c636a;}
+
+/* Botões do menu lateral (Conta, Configurações, Conquistas) */
+.sidebar-btn {color: var(--cor-primaria-texto); font-weight: 500;}
+.sidebar-btn:hover {background-color: var(--cor-fundo-claro); color: var(--cor-primaria-escura);}
+
+/* Barras de progresso e badges que usam a cor "primária" do Bootstrap.
+    !important - pra garantir que fique roxo mesmo se o Bootstrap aplicar azul. */
+.bg-primary {background-color: var(--cor-primaria) !important;}
+
+/* Botões principais (Entrar, Criar conta) em roxo em vez do azul do Bootstrap */
+.btn-primary {background-color: var(--cor-primaria); border-color: var(--cor-primaria);}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {background-color: var(--cor-primaria-escura) !important; 
+                     border-color: var(--cor-primaria-escura) !important;}
+
+/* Links em roxo */
+a {color: var(--cor-primaria-texto);}
+a:hover {color: var(--cor-primaria-escura);}
+
+/* Contorno roxo quando o usuário clica num campo de texto (no lugar do azul) */
+.form-control:focus {border-color: var(--cor-primaria); box-shadow: 0 0 0 0.2rem rgba(114, 83, 254, 0.25);}
+
+/* Fundo lilás nos cards */
+.card {background-color: var(--cor-fundo-claro); border: none; border-radius: 12px;}
+
+/* cor dos títulos */
+h1, h2, h3 {color: var(--cor-texto-escuro);}
+
+/* Botão roxo também quando está desativado (o Bootstrap deixa azul) */
+.btn-primary:disabled,
+.btn-primary.disabled {background-color: var(--cor-primaria); border-color: var(--cor-primaria);}
+
+/* Ícones (Bootstrap Icons, na pasta vendor/) */
+.icone-conquista .bi, .icone-aviso .bi, .icone-toast .bi, .icone-loja .bi, .icone-modal .bi,
+.liga-icone .bi, .logo-circulo .bi, .bolinha-nivel .bi, .logo-nome .bi {color: var(--cor-primaria);}
+.passo-nivel.atual .bolinha-nivel .bi {color: #ffffff;}
+.passo-nivel.bloqueado .bolinha-nivel .bi {color: #adb5bd;}
+.sidebar-btn .bi {font-size: 1.1rem;}
+/* cores das ligas e dos troféus do ranking */
+.bi.liga-bronze {color: #b0703c;}
+.bi.liga-prata {color: #8e98a3;}
+.bi.liga-ouro {color: #d9a400;}
+.bi.liga-diamante {color: #2fa8d5;}
+.aviso-camera .bi {margin-right: 0.4rem;}
+
+
+/* ---------------- Acessibilidade (WCAG 2.1 níveis A e AA) ---------------- */
+
+/* Textos secundários e botões contornados com contraste suficiente (1.4.3) */
+.text-muted {color: var(--cor-texto-suave) !important;}
+.btn-outline-primary {--bs-btn-color: var(--cor-primaria-texto); --bs-btn-border-color: var(--cor-primaria);
+                      --bs-btn-hover-bg: var(--cor-primaria); --bs-btn-hover-border-color: var(--cor-primaria);
+                      --bs-btn-active-bg: var(--cor-primaria-escura); --bs-btn-active-border-color: var(--cor-primaria-escura);}
+.btn-outline-danger {--bs-btn-color: #b02a37;}
+
+/* Foco do teclado sempre visível (2.4.7) */
+a:focus-visible, button:focus-visible, .btn:focus-visible, [tabindex]:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--cor-primaria-escura); outline-offset: 2px;}
+
+/* Link "Pular para o conteúdo": invisível até receber o foco do teclado (2.4.1) */
+.pular-conteudo {position: absolute; left: 0.5rem; top: -3rem; z-index: 2000; padding: 0.5rem 1rem;
+                 background-color: var(--cor-primaria-escura); color: #ffffff; border-radius: 0.5rem;}
+.pular-conteudo:focus {top: 0.5rem; color: #ffffff;}
+
+/* Quem prefere menos animação no sistema operacional (2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+                            transition-duration: 0.01ms !important; scroll-behavior: auto !important;}
+}

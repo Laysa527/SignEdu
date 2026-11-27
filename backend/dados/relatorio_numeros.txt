@@ -1,0 +1,22 @@
+Modelo dos números (sinais parados) - 25/11/2026 00:27
+Quadros: 2319 | vídeos: 232 | até 10 quadros por vídeo
+Quadros por número: 0=239, 1=240, 2=120, 3=240, 4=240, 5=240, 6=280, 7=240, 8=240, 9=240
+
+Validação cruzada por vídeo (K=5): 94.4% por quadro (desvio 2.2%), 95.7% por vídeo
+
+Matriz de confusão da validação cruzada (linha = certo, coluna = previsto):
+        0    1    2    3    4    5    6    7    8    9
+   0  236    0    0    0    0    0    0    0    3    0
+   1    0  227   13    0    0    0    0    0    0    0
+   2    0   10  100    0    9    1    0    0    0    0
+   3    0    0    0  213   24    0    3    0    0    0
+   4    0    0    1   31  208    0    0    0    0    0
+   5    0    0    0    0    0  239    0    0    1    0
+   6    4    0    0    4    2    0  252   15    0    3
+   7    0    0    0    0    0    0    0  238    0    2
+   8    0    0    0    0    0    0    0    0  240    0
+   9    0    0    0    0    0    0    0    0    4  236
+
+Treino com uma luz e teste com a outra:
+  D -> I: 77.2% por quadro, 77.5% por vídeo (no treino faltou: 2)
+  I -> D: 79.1% por quadro, 80.4% por vídeo

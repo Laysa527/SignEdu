@@ -1,0 +1,20 @@
+Teste por iluminação (treina com uma gravação, testa com a outra)
+Cada grupo é avaliado só entre os sinais dele, como no site (que sabe qual sinal a pessoa escolheu).
+
+Letras com movimento (H, J, K, X, Z, Ç) - só a mão:
+  Sinal certo como o mais provável: 87.6% (145 vídeos; 83.3% (treino D, teste I), 91.8% (treino I, teste D))
+  Vale como acerto no site (mais provável e >= 30%): 84.1%
+  Acerto por sinal: K 71%, Z 75%, J 80%, H 100%, X 100%, Ç 100%
+  Confusões mais comuns: K -> H (6), J -> Z (4), Z -> H (3), Z -> J (3), J -> X (1), K -> Z (1)
+
+Saudações - mão + corpo + rosto:
+  Sinal certo como o mais provável: 79.3% (280 vídeos; 83.1% (treino D, teste I), 75.7% (treino I, teste D))
+  Vale como acerto no site (mais provável e >= 30%): 63.2%
+  Acerto por sinal: Obrigado 30%, Boa noite 67%, Boa tarde 67%, Não 83%, Nome 83%, Por favor 83%, Oi 86%, Bom dia 88%, Desculpa 88%, Sim 88%, Tudo bem 88%, Tchau 95%
+  Confusões mais comuns: Obrigado -> Por favor (10), Boa noite -> Boa tarde (4), Boa tarde -> Bom dia (3), Nome -> Não (3), Por favor -> Boa noite (3), Boa noite -> Por favor (3)
+
+Saudações - só a mão (quando o corpo/rosto não aparecem):
+  Sinal certo como o mais provável: 75.5% (286 vídeos; 78.2% (treino D, teste I), 72.9% (treino I, teste D))
+  Vale como acerto no site (mais provável e >= 30%): 65.4%
+  Acerto por sinal: Obrigado 21%, Boa noite 54%, Boa tarde 67%, Bom dia 71%, Não 79%, Desculpa 83%, Nome 83%, Oi 87%, Tudo bem 88%, Tchau 91%, Por favor 92%, Sim 92%
+  Confusões mais comuns: Obrigado -> Por favor (10), Boa noite -> Por favor (6), Bom dia -> Não (3), Nome -> Não (3), Tudo bem -> Por favor (3), Boa noite -> Nome (2)

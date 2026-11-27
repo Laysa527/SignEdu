@@ -1,0 +1,101 @@
+/* paginas.css - estilos das telas Conta, Configurações e Conquistas
+   (não mexe no estilo.css nem no perfil.css, só completa o que as telas novas precisam) */
+
+/* mesmo tamanho do avatar do perfil */
+.avatar {width: 80px; height: 80px;}
+
+/* Interruptores e caixas de seleção em roxo (no lugar do azul do Bootstrap) */
+.form-check-input:checked {background-color: var(--cor-primaria); border-color: var(--cor-primaria);}
+.form-check-input:focus,
+.form-select:focus {border-color: var(--cor-primaria); box-shadow: 0 0 0 0.2rem rgba(114, 83, 254, 0.25);}
+
+/* Barra de tamanho do texto em roxo */
+.form-range::-webkit-slider-thumb {background-color: var(--cor-primaria);}
+.form-range::-moz-range-thumb {background-color: var(--cor-primaria);}
+
+/* Botões em formato de link em roxo */
+.btn-link {--bs-btn-color: var(--cor-primaria-texto); --bs-btn-hover-color: var(--cor-primaria-escura); --bs-btn-active-color: var(--cor-primaria-escura);}
+
+/* Porcentagens embaixo da barra de tamanho do texto.
+   Cada botão tem largura 0 pra ficar exatamente embaixo da posição da bolinha. */
+.escala-fonte {margin: 0 0.5rem;}
+.escala-fonte .btn {width: 0; display: flex; justify-content: center; white-space: nowrap;
+                    font-size: 0.875rem; color: var(--cor-texto-suave); text-decoration: none;}
+.escala-fonte .btn.selecionado {color: var(--cor-primaria-texto); font-weight: 700;}
+
+/* Pop-up de meta cumprida */
+.icone-aviso {font-size: 3.5rem;}
+
+/* Filtros da tela de conquistas - mesmo estilo das abas "Entrar / Criar conta" do login */
+.nav-pills .nav-link {color: var(--cor-primaria-texto); font-weight: 500;}
+.nav-pills .nav-link.active {background-color: var(--cor-primaria); color: #ffffff;}
+
+/* Conquistas - mesmo tamanho de ícone do perfil */
+.icone-conquista {font-size: 2rem;}
+.icone-modal {font-size: 4rem;}
+
+.card-conquista {cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;}
+.card-conquista:hover,
+.card-conquista:focus {transform: translateY(-3px); box-shadow: 0 4px 12px rgba(114, 83, 254, 0.25);}
+
+/* conquista que o usuário ainda não tem: o ícone fica cinza e apagado; o texto continua
+   legível (contraste mínimo de 4,5:1, WCAG 1.4.3) */
+.card-conquista.bloqueada .icone-conquista {opacity: 0.45; filter: grayscale(1);}
+.card-conquista.bloqueada .card-body p, .card-conquista.bloqueada .card-body span {color: var(--cor-texto-suave) !important;}
+
+.barra-conquista {height: 8px;}
+
+/* Foto de perfil na tela de conta */
+.avatar-grande {width: 120px; height: 120px;}
+.avatar-grande img {object-fit: cover;}
+
+/* Aviso de conquista (canto inferior direito) */
+.aviso-conquista {background-color: #ffffff; border-left: 4px solid var(--cor-primaria) !important;}
+.icone-toast {font-size: 2rem;}
+
+
+/* ================== GAMIFICAÇÃO ================== */
+
+/* Molduras do avatar (compradas na loja) */
+.avatar.moldura-lilas    {box-shadow: 0 0 0 4px #b9a8ff;}
+.avatar.moldura-fogo     {box-shadow: 0 0 0 4px #ff7a3d, 0 0 10px 2px rgba(255, 122, 61, 0.6);}
+.avatar.moldura-ouro     {box-shadow: 0 0 0 4px #f2c230, 0 0 10px 2px rgba(242, 194, 48, 0.6);}
+.avatar.moldura-arcoiris {box-shadow: 0 0 0 3px #ff5a5a, 0 0 0 6px #ffd84d, 0 0 0 9px #5ad17a, 0 0 0 12px #5aa9ff;}
+
+/* prévia da moldura nos cards da loja */
+.previa-moldura {width: 56px; height: 56px; font-size: 1.6rem;}
+
+/* Ligas (faixa no topo do ranking) */
+.liga-item .liga-icone {opacity: 0.45; filter: grayscale(1);}
+.liga-item p {color: var(--cor-texto-suave);}
+.liga-item.atual .liga-icone {opacity: 1; filter: none;}
+.liga-item.atual p {color: inherit;}
+.liga-item.atual .liga-icone {transform: scale(1.25);}
+.liga-icone {font-size: 2.2rem; display: inline-block; transition: transform 0.2s;}
+
+/* Linhas do ranking */
+.linha-ranking {background-color: #ffffff; border-radius: 10px;}
+.linha-ranking.voce {background-color: var(--cor-primaria); color: #ffffff;}
+.linha-ranking.voce .text-muted {color: rgba(255, 255, 255, 0.8) !important;}
+.posicao-ranking {width: 2rem; font-weight: 700; text-align: center;}
+.inicial-ranking {width: 36px; height: 36px; font-weight: 700; background-color: var(--cor-fundo-claro); color: var(--cor-primaria);}
+.linha-ranking.voce .inicial-ranking {background-color: #ffffff;}
+.divisoria-ranking {font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;}
+
+/* Loja */
+.icone-loja {font-size: 2.2rem;}
+.saldo-moedas {font-size: 2rem; font-weight: 700; color: var(--cor-primaria);}
+
+/* Missões da semana (perfil) */
+.barra-missao {height: 10px;}
+.missao {background-color: #ffffff; border-radius: 10px;}
+.missao.concluida .barra-missao, .missao.concluida .bi {opacity: 0.6;}
+
+/* Trilha de níveis (perfil) */
+.trilha-niveis {overflow-x: auto;}
+.passo-nivel {min-width: 92px;}
+.bolinha-nivel {width: 52px; height: 52px; font-size: 1.5rem; background-color: #ffffff; border: 3px solid #d9d2ff;}
+.passo-nivel.feito .bolinha-nivel {border-color: var(--cor-primaria);}
+.passo-nivel.atual .bolinha-nivel {border-color: var(--cor-primaria); background-color: var(--cor-primaria); box-shadow: 0 0 0 4px rgba(114, 83, 254, 0.25);}
+.passo-nivel.bloqueado .bolinha-nivel {opacity: 0.45; filter: grayscale(1);}
+.passo-nivel.bloqueado p {color: var(--cor-texto-suave);}

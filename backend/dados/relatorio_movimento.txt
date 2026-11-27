@@ -1,0 +1,72 @@
+Random Forest - reconhecimento de sinais com movimento (vídeos)
+Sinais: Boa noite, Boa tarde, Bom dia, Desculpa, H, J, Nome, Não, Obrigado, Oi, Por favor, Sim, Tchau, Tudo bem
+Vídeos de treino: 263
+Vídeos de teste: 66
+Acurácia no teste: 92.4%
+
+Validação cruzada (K-fold estratificado, K=5, só nos vídeos de treino):
+  Fold 1: 92.45%
+  Fold 2: 96.23%
+  Fold 3: 96.23%
+  Fold 4: 90.38%
+  Fold 5: 98.08%
+  Média: 94.67% (desvio padrão 2.82%)
+
+Acerto por sinal (precision, recall, f1-score):
+              precision    recall  f1-score   support
+
+   Boa noite      0.800     0.800     0.800         5
+   Boa tarde      1.000     1.000     1.000         5
+     Bom dia      1.000     1.000     1.000         5
+    Desculpa      1.000     0.800     0.889         5
+           H      1.000     1.000     1.000         5
+           J      1.000     0.800     0.889         5
+        Nome      1.000     1.000     1.000         5
+         Não      1.000     1.000     1.000         4
+    Obrigado      1.000     0.750     0.857         4
+          Oi      1.000     1.000     1.000         4
+   Por favor      0.714     1.000     0.833         5
+         Sim      1.000     1.000     1.000         5
+       Tchau      0.800     1.000     0.889         4
+    Tudo bem      0.800     0.800     0.800         5
+
+    accuracy                          0.924        66
+   macro avg      0.937     0.925     0.926        66
+weighted avg      0.936     0.924     0.925        66
+
+Matriz de confusão (linha = sinal certo, coluna = sinal previsto):
+           Boa noite  Boa tarde    Bom dia   Desculpa          H          J       Nome        Não   Obrigado         Oi  Por favor        Sim      Tchau   Tudo bem
+ Boa noite          4          0          0          0          0          0          0          0          0          0          1          0          0          0
+ Boa tarde          0          5          0          0          0          0          0          0          0          0          0          0          0          0
+   Bom dia          0          0          5          0          0          0          0          0          0          0          0          0          0          0
+  Desculpa          1          0          0          4          0          0          0          0          0          0          0          0          0          0
+         H          0          0          0          0          5          0          0          0          0          0          0          0          0          0
+         J          0          0          0          0          0          4          0          0          0          0          0          0          0          1
+      Nome          0          0          0          0          0          0          5          0          0          0          0          0          0          0
+       Não          0          0          0          0          0          0          0          4          0          0          0          0          0          0
+  Obrigado          0          0          0          0          0          0          0          0          3          0          0          0          1          0
+        Oi          0          0          0          0          0          0          0          0          0          4          0          0          0          0
+ Por favor          0          0          0          0          0          0          0          0          0          0          5          0          0          0
+       Sim          0          0          0          0          0          0          0          0          0          0          0          5          0          0
+     Tchau          0          0          0          0          0          0          0          0          0          0          0          0          4          0
+  Tudo bem          0          0          0          0          0          0          0          0          0          0          1          0          0          4
+
+Modelos por grupo (validação cruzada estratificada, K=5, todos os vídeos):
+  Alfabeto (só mão, 6 sinais, 145 vídeos): 97.24% (desvio 2.58%)
+  Saudações (mão + corpo + rosto, 12 sinais, 280 vídeos): 93.57% (desvio 4.46%)
+  Saudações (só mão, 12 sinais, 286 vídeos): 91.27% (desvio 1.84%)
+
+Modelos por grupo COM aumento de dados (janelas de 2-3 s + câmeras simuladas).
+Validação cruzada por vídeo (K=5), testada em janelas ao vivo de 2-3 s;
+acerto = sinal certo em primeiro com certeza >= 30%:
+  Alfabeto (só mão, 6 sinais, 145 vídeos, 9296 exemplos de treino): 91.81% em 1673 janelas
+  Saudações (mão + corpo + rosto, 12 sinais, 280 vídeos, 18428 exemplos de treino): 94.99% em 3332 janelas
+  Saudações (só mão, 12 sinais, 286 vídeos, 18768 exemplos de treino): 91.83% em 3392 janelas
+
+Modelos por grupo COM aumento de dados (janelas de 2-3 s + câmeras simuladas)
+e com a classe "Nenhum sinal" (mão parada, mão que sobe e para, mão sacudindo).
+Validação cruzada por vídeo (K=5), com as regras do site (filtro de movimento +
+sinal certo em primeiro com certeza >= 30%):
+  Alfabeto (só mão, 6 sinais, 145 vídeos, 10845 exemplos de treino): acerto 85.71% em 1673 janelas; aceito por engano 2.07% de 1450 exemplos sem sinal
+  Saudações (mão + corpo + rosto, 12 sinais, 280 vídeos, 19355 exemplos de treino): acerto 86.46% em 3332 janelas; aceito por engano 6.02% de 1229 exemplos sem sinal
+  Saudações (só mão, 12 sinais, 286 vídeos, 20332 exemplos de treino): acerto 82.64% em 3392 janelas; aceito por engano 4.93% de 2860 exemplos sem sinal

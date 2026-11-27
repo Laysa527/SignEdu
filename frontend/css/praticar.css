@@ -1,0 +1,97 @@
+/* praticar.css - estilos só da tela de praticar (câmera + MediaPipe) */
+
+body {background-color: #ffffff;}
+
+.logo-nome {color: var(--cor-primaria-texto); font-weight: 700;}
+
+/* O vídeo e o desenho da mão ficam um em cima do outro */
+.area-camera {position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: 75vh; margin: 0 auto;
+              background-color: #1a1a1a; border-radius: 12px; overflow: hidden;}
+
+.area-camera video,
+.area-camera canvas {position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;}
+
+/* Espelha o vídeo pra ficar como um espelho (igual o cv2.flip do teste em Python).
+   O canvas NÃO é espelhado porque os pontos já voltam do back na posição espelhada. */
+.area-camera video {transform: scaleX(-1);}
+
+.aviso-camera {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+               color: #ffffff; font-size: 1.1rem;}
+.aviso-camera[hidden] {display: none;}
+
+/* Letra que a pessoa tem que fazer + foto de exemplo */
+.letra-alvo {font-size: 3rem; font-weight: 700; color: var(--cor-primaria); line-height: 1.1;}
+.foto-exemplo {width: 160px; height: 160px; object-fit: cover; border-radius: 12px; margin-top: 8px;}
+
+.barra-acerto {height: 10px;}
+
+/* Letra que o modelo reconheceu */
+.letra-reconhecida {font-size: 3rem; font-weight: 700; color: var(--cor-texto-escuro); line-height: 1.2;}
+.letra-reconhecida.certa {color: #198754;}
+
+/* Letra reconhecida e detecção dentro do cartão do exemplo */
+.bloco-reconhecida, .bloco-deteccao {border-top: 1px solid rgba(0, 0, 0, 0.08); padding-top: 0.6rem;}
+.bloco-reconhecida .letra-reconhecida {font-size: 2.5rem;}
+.bloco-deteccao li {overflow-wrap: anywhere;}
+.bloco-reconhecida .letra-reconhecida.longo {font-size: 1.5rem; line-height: 1.25;}
+
+/* Botões das letras */
+.btn-letra {width: 42px; font-weight: 600; color: var(--cor-primaria-texto); border-color: var(--cor-primaria);}
+.btn-letra:hover {background-color: var(--cor-fundo-claro); color: var(--cor-primaria-escura);}
+.btn-letra.ativa {background-color: var(--cor-primaria); color: #ffffff;}
+
+/* Sinais com movimento: nomes mais compridos (ex.: "Tchau") e vídeo de exemplo */
+.btn-letra.largo {width: auto; padding-left: 12px; padding-right: 12px;}
+#video-exemplo[hidden], .foto-exemplo[hidden] {display: none;}
+
+/* Contagem regressiva e aviso de gravação por cima da câmera */
+.contagem {position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+           color: #ffffff; font-size: 3rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+           pointer-events: none; z-index: 2;}
+.contagem[hidden] {display: none;}
+.area-camera.gravando {box-shadow: inset 0 0 0 6px #dc3545;}
+
+/* Sinais com movimento: deixa claro que é preciso clicar em "Gravar sinal" */
+.aviso-gravar {background-color: #ffffff; border: 2px solid #dc3545; border-radius: 12px; padding: 12px 14px;}
+.aviso-gravar .bi-record-circle {color: #dc3545;}
+.aviso-gravar[hidden], #bloco-gravar-celular[hidden], .legenda-sinais[hidden], #bloco-enviar-video[hidden] {display: none;}
+.btn-gravar {font-weight: 700;}
+.btn-gravar.chamar {animation: pulsar 1.6s ease-in-out infinite;}
+@keyframes pulsar {0%, 100% {box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.55);}
+                   50% {box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);}}
+@media (prefers-reduced-motion: reduce) {.btn-gravar.chamar {animation: none;}}
+.lembrete-gravar {color: #b02a37;}
+
+/* Botões dos sinais com movimento: bolinha vermelha de "gravar" */
+.btn-letra.movimento .bi {color: #dc3545; font-size: 0.75rem; margin-right: 2px;}
+.btn-letra.movimento.ativa .bi {color: #ffffff;}
+.legenda-sinais {color: #6c757d;}
+.exemplo-botao {display: inline-block; border: 1px solid var(--cor-primaria); color: var(--cor-primaria-texto);
+                border-radius: 6px; padding: 0 6px; font-weight: 600;}
+.exemplo-botao.movimento .bi {color: #dc3545; font-size: 0.75rem;}
+
+/* Celular e tablet: câmera e exemplo lado a lado, os dois menores */
+@media (max-width: 991.98px) {
+    .card-pratica > .card-body {padding: 0.6rem;}
+    .botoes-camera {gap: 0.35rem !important; margin-top: 0.5rem !important;}
+    .botoes-camera .btn {padding: 0.3rem 0.55rem; font-size: 0.85rem;}
+    #rotulo-alvo {font-size: 0.85rem;}
+    .letra-alvo {font-size: 2rem;}
+    .foto-exemplo {width: 100%; max-width: 180px; height: auto; aspect-ratio: 1 / 1;}
+    .bloco-reconhecida, .bloco-deteccao {margin-top: 0.6rem !important; padding-top: 0.45rem;}
+    .bloco-reconhecida .letra-reconhecida {font-size: 2rem;}
+    .bloco-reconhecida .letra-reconhecida.longo {font-size: 1.1rem;}
+    .bloco-deteccao .small {font-size: 0.75rem;}
+    .aviso-gravar {padding: 8px;}
+    #btn-gravar {font-size: 0.95rem; padding: 0.45rem 0.4rem;}
+    .contagem {font-size: 1.8rem; text-align: center; padding: 0 8px;}
+}
+@media (max-width: 575.98px) {
+    .btn-letra {width: 46px; height: 40px;}
+    .btn-letra.largo {width: auto;}
+}
+}
+
+/* Próximo sinal (ao lado de Desligar) em roxo, como os outros botões */
+#btn-proximo-sinal {color: var(--cor-primaria-texto); border-color: var(--cor-primaria);}
+#btn-proximo-sinal:hover {background-color: var(--cor-primaria); color: #ffffff;}

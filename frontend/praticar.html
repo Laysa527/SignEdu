@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/praticar.css">
+    <title>Praticar | SignEdu</title>
+</head>
+<body>
+
+    <div class="container py-4">
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <a href="perfil.html" class="small">← Voltar ao perfil</a>
+            <span class="logo-nome"><i class="bi bi-hand-index-thumb" aria-hidden="true"></i> SignEdu</span>
+        </div>
+
+        <h1 class="h3">Praticar sinais</h1>
+        <p class="text-muted">Escolha um sinal, ligue a câmera e faça o sinal igual ao exemplo.
+            Letras e números são <strong>parados</strong>: é só segurar o sinal na câmera.
+            Sinais com movimento (<i class="bi bi-record-circle" aria-hidden="true"></i>): faça o sinal inteiro na câmera e o SignEdu tenta reconhecer sozinho;
+            se não reconhecer, use o botão <strong>Gravar sinal</strong>.</p>
+
+        <!-- Celular e PC: a câmera fica ao lado do exemplo (no celular os dois ficam menores).
+             Embaixo: a lista de sinais e, no PC, o sinal reconhecido e a detecção ao lado. -->
+        <div class="row g-2 g-lg-4">
+
+            <div class="col-7 col-lg-8">
+                <div class="card h-100 card-pratica">
+                    <div class="card-body">
+
+                        <div class="area-camera" id="area-camera">
+                            <video id="video" autoplay playsinline muted></video>
+                            <canvas id="canvas-desenho"></canvas>
+                            <div class="aviso-camera" id="aviso-camera"><i class="bi bi-camera-video-off" aria-hidden="true"></i> Câmera desligada</div>
+                            <!-- contagem regressiva e aviso de "gravando" dos sinais com movimento -->
+                            <div class="contagem" id="contagem" hidden></div>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-center gap-2 mt-3 botoes-camera">
+                            <button type="button" class="btn btn-primary" id="btn-ligar">Ligar câmera</button>
+                            <button type="button" class="btn btn-outline-secondary" id="btn-desligar" disabled>Desligar</button>
+                            <button type="button" class="btn btn-outline-primary" id="btn-proximo-sinal">Próximo sinal <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+                            <span class="d-none" id="alvo-curto">A</span>
+                        </div>
+
+                        <div id="mensagem-camera" class="alert d-none mt-3 mb-0" role="alert"></div>
+
+                        <!-- resultado da gravação / do vídeo enviado e aviso de acerto: logo abaixo da câmera,
+                             pra aparecer sem rolar a tela no celular -->
+                        <div id="resultado-video" class="alert d-none mt-3 mb-0" role="status"></div>
+
+                        <div id="mensagem-acerto" class="alert alert-success mt-3 mb-0 text-center" hidden>
+                            <strong>Acertou!</strong>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-5 col-lg-4">
+                <div class="card h-100 card-pratica">
+                    <div class="card-body text-center">
+                        <p class="mb-1" id="rotulo-alvo">Faça a letra</p>
+                        <div class="letra-alvo" id="letra-alvo">A</div>
+                        <img class="foto-exemplo" id="foto-exemplo" src="img/letras/A.png" alt="Exemplo do sinal da letra A em Libras">
+                        <!-- só aparece pros sinais com movimento que têm vídeo de exemplo em frontend/videos/ -->
+                        <video class="foto-exemplo" id="video-exemplo" autoplay loop muted playsinline hidden></video>
+
+                        <div class="progress barra-acerto mt-3" role="progressbar" aria-label="Segurando o sinal">
+                            <div class="progress-bar bg-success" id="barra-acerto" style="width: 0%;"></div>
+                        </div>
+
+                        <!-- sinais com movimento: logo abaixo do exemplo, sem precisar rolar a tela -->
+                        <div id="bloco-movimento" class="aviso-gravar mt-3 text-start" hidden>
+                            <button type="button" class="btn btn-danger btn-lg w-100 btn-gravar" id="btn-gravar">
+                                <i class="bi bi-record-circle-fill" aria-hidden="true"></i> <span class="texto-gravar">Gravar sinal</span>
+                            </button>
+                            <p class="small mt-2 mb-0 d-none d-lg-block"><strong>Sinal com movimento:</strong> faça o sinal inteiro na câmera e o SignEdu
+                                tenta reconhecer sozinho. Se não reconhecer, clique em <strong>Gravar sinal</strong> e faça o sinal depois do 3, 2, 1.</p>
+                            <p class="small text-muted mt-1 mb-0 d-none d-lg-block" id="instrucao-movimento"></p>
+                        </div>
+
+                        <!-- vídeo enviado: só nos sinais com movimento (nas letras e números parados
+                             basta segurar o sinal na câmera, e o botão confundia) -->
+                        <div class="mt-3" id="bloco-enviar-video" hidden>
+                            <button type="button" class="btn btn-outline-primary btn-sm w-100" id="btn-enviar-video">
+                                <i class="bi bi-upload" aria-hidden="true"></i> Enviar um vídeo
+                            </button>
+                            <input type="file" id="campo-video" accept="video/*,.mp4,.mov,.avi,.webm,.mkv" hidden>
+                        </div>
+
+                        <!-- Letra reconhecida e detecção ficam logo abaixo do exemplo (antes ficavam
+                             em cartões separados lá embaixo e sobrava um espaço vazio aqui) -->
+                        <div class="bloco-reconhecida mt-3">
+                            <p class="mb-0 small" id="rotulo-reconhecida">Letra reconhecida</p>
+                            <div class="letra-reconhecida" id="letra-reconhecida">—</div>
+                            <p class="small text-muted mb-0" id="info-certeza">&nbsp;</p>
+                        </div>
+
+                        <div class="bloco-deteccao mt-3 text-start">
+                            <h3 class="h6 mb-1">Detecção</h3>
+                            <ul class="list-unstyled small mb-0">
+                                <li>Mãos na tela: <strong id="info-maos">—</strong></li>
+                                <li>Lado: <strong id="info-lado">—</strong></li>
+                                <li><span class="d-none d-sm-inline">Quadros por segundo</span><span class="d-sm-none">Quadros/s</span>: <strong id="info-fps">—</strong></li>
+                                <li>Corpo e rosto: <strong id="info-corpo">—</strong></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="h6 mb-2">Alfabeto</h3>
+                        <!-- Os botões são criados pelo praticar.js. As letras com movimento (H, J, K, X, Z, Ç),
+                             os números e as saudações vêm do back e só aparecem se o modelo de movimento foi treinado -->
+                        <div class="d-flex flex-wrap gap-2" id="lista-letras"></div>
+
+                        <div id="bloco-numeros" hidden>
+                            <h3 class="h6 mt-3 mb-2">Números</h3>
+                            <div class="d-flex flex-wrap gap-2" id="lista-numeros"></div>
+                        </div>
+
+                        <div id="bloco-saudacoes" hidden>
+                            <h3 class="h6 mt-3 mb-2">Saudações</h3>
+                            <div class="d-flex flex-wrap gap-2" id="lista-saudacoes"></div>
+                        </div>
+
+                        <p class="small text-muted mt-2 mb-0" id="nota-movimento">H, J, K, X e Z ficaram de fora porque têm movimento.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/geral.js"></script>
+    <script src="js/praticar.js"></script>
+</body>
+</html>
